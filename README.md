@@ -1,2 +1,2 @@
 # APA
-Atividades para disciplina análise e projetos de algoritmos
+Atividades para disciplina de análise e projetos de algoritmos
