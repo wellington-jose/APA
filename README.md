@@ -10,7 +10,9 @@ $ make
 para execultar o programa digite:
 
 $ ./sorting 1  (para executar o selectionSort)
+
 ou
+
 $ ./sorting 2  (para executar o insertionSort)
 
 em seguida digite o tamanho do araray (a primeira linha é o tamanho do array) e depois os elementos do array.
@@ -22,8 +24,11 @@ $ make
 $ ./sorting 1
 
 3
+
 4
+
 6
+
 1
  
 
