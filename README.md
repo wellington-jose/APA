@@ -23,13 +23,10 @@ $ make
 
 $ ./sorting 1
 
-3
-
-4
-
-6
-
-1
+3   
+4   
+6    
+1   
  
 
 array ordenado:
