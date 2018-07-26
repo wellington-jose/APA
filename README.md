@@ -18,13 +18,16 @@ em seguida digite o tamanho do araray e depois os elementos do array.
 exemplo de entrada:
 
 $ make
+
 $ ./sorting 1
+
  3
  4
  6
  1
 
 array ordenado:
+
  1
  4
  6
