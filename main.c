@@ -1,6 +1,7 @@
 /****************************************************************
 *
-* ATIVIDADE 1 - ANÁLISE E PROJETO DE ALGORITMOS  
+* ATIVIDADES - ANÁLISE E PROJETO DE ALGORITMOS 
+* IMPLEMENTAÇÃO DO SELECTIONSORT, INSERTIONSORT, QUICKSORT E MERGESORT 
 * ALUNO: WELLINGTON JOSÉ L. DA SILVA 
 *
 ****************************************************************/
@@ -90,6 +91,99 @@ void insertionSort(int *V, int n){
 
 }
 
+// Quicksort  
+int particiona(int *V, int inicio, int fim){
+
+	int esquerda, direita, pivo, aux;
+	esquerda = inicio;
+	direita = fim;
+	pivo = V[inicio];
+
+	while(esquerda<direita){
+
+		while(V[esquerda] <= pivo){
+			esquerda++;
+		}
+		while(V[direita] > pivo){
+			direita--;
+		}
+		if(esquerda < direita){
+			aux = V[esquerda];
+			V[esquerda] = V[direita];
+			V[direita] = aux;
+		}
+	}
+	V[inicio] = V[direita];
+	V[direita] = pivo;
+	return direita;
+
+}
+void quickSort(int *V, int inicio, int fim){
+	
+	int pivo;
+	if(fim > inicio){
+
+		pivo = particiona(V,inicio,fim);
+		quickSort(V,inicio,pivo-1);
+		quickSort(V,pivo+1,fim);
+	}
+}
+
+
+//Merge Sort
+int  merge(int *V, int inicio, int meio, int fim){
+
+	int *temp, p1, p2, tamanho, i, j, k;
+	int fim1 = 0, fim2 = 0;
+	tamanho = fim-inicio+1;
+	p1 = inicio;
+	p2 = meio + 1;
+	temp = (int*) malloc(tamanho*sizeof(int));
+
+	if(temp != NULL){
+
+		for(i = 0; i < tamanho; i++){
+
+			if(!fim1 && !fim2){
+
+				if(V[p1] < V[p2]){
+					temp[i] = V[p1++];
+				}else{
+					temp[i] = V[p2++];
+				}
+				if(p1 > meio){
+					fim1 = 1;
+				}
+				if(p2 > fim){
+					fim2 = 1;
+				}
+
+			}else{
+				if(!fim1){
+					temp[i] = V[p1++];
+				}else{
+					temp[i] = V[p2++];	
+				}
+			}
+		}
+		for(j=0, k = inicio; j<tamanho; j++, k++){
+			V[k] = temp[j];
+		}
+
+	}
+	free(temp); 
+}
+void mergeSort(int *V, int inicio, int fim){
+	
+	int meio;
+	if(inicio < fim){
+
+		meio = (inicio + fim)/2;
+		mergeSort(V, inicio, meio);
+		mergeSort(V, meio+1, fim);
+		merge(V,inicio, meio, fim);		
+	}
+}
 
 int main(int argc, char * argv[]){
 
@@ -116,10 +210,22 @@ int main(int argc, char * argv[]){
 
 		case 1:
 			selectionSort(vetor,tamanho);
+			printf("\narray ordenado pelo selectionSort\n");
 		break;
 		
 		case 2:
 			insertionSort(vetor,tamanho);
+			printf("\narray ordenado pelo insertionSort\n");
+		break;
+
+		case 3:
+			quickSort(vetor, 0, tamanho-1);
+			printf("\narray ordenado pelo quickSort\n");
+		break;
+
+		case 4:
+			mergeSort(vetor, 0, tamanho-1);
+			printf("\narray ordenado pelo mergeSort\n");
 		break;
 
 		default:
@@ -128,7 +234,7 @@ int main(int argc, char * argv[]){
 
 	}
 	
-	printf("array ordenado:");
+	//printf("array ordenado:");
 	display(vetor,tamanho);
 	free(vetor);
 
