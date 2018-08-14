@@ -14,6 +14,8 @@ $ ./sorting 1  (para executar o selectionSort)
 ou
 
 $ ./sorting 2  (para executar o insertionSort)
+$ ./sorting 3  (para executar o quickSort)
+$ ./sorting 4  (para executar o mergeSort)
 
 em seguida digite o tamanho do araray (a primeira linha é o tamanho do array) e depois os elementos do array.
 
