@@ -19,6 +19,10 @@ $ ./sorting 3  (para executar o quickSort)
 
 $ ./sorting 4  (para executar o mergeSort)
 
+$ ./sorting 5  (para executar o CoutingSort)
+
+$ ./sorting 5  (para executar o HeapSort)
+
 em seguida digite o tamanho do araray (a primeira linha é o tamanho do array) e depois os elementos do array.
 
 exemplo de entrada:

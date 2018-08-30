@@ -185,6 +185,87 @@ void mergeSort(int *V, int inicio, int fim){
 	}
 }
 
+
+
+// Counting sort
+void countingSort(int *V, int n){
+
+	
+    int output[n];
+    int range, min, max;
+    min = elementMin(V,n);
+    max = elementMax(V,n);
+    range = max - min + 1;
+
+    int count[range] = {0}, i;
+ 
+    
+    for(i = 0; i < n; i++)
+        ++count[V[i]-min];
+ 
+    for (i = 1; i < range; i++)
+        count[i] += count[i-1];
+ 
+    for (i = 0; i < n; i++)
+    {
+        output[ count[ V[i] -min]-1] = V[i];
+        --count[V[i] - min];
+    }
+ 
+    for (i = 0; i < n; i++)
+        V[i] = output[i];    	
+    	
+}
+
+
+// Heapsort
+void heapify(int head, int size, int* list){
+	
+	int max = head;
+	int left = head*2 + 1;
+	int right = head*2 + 2;
+	int aux;
+
+	if(left > size-1)
+		left = head;
+
+	if(right > size-1)
+		right = head;	
+
+	if(list[max] < list[left])
+		max = left;
+
+	if(list[max] < list[right])
+		max = right;
+
+	aux = list[max];
+	list[max] = list[head];
+	list[head] = aux;
+
+	if(max != head)
+		heapify(max, size, list);
+}
+
+
+void maxHeapify(int* v, int n){
+	for(int i = n/2; i >= 0; i--){
+		heapify(i, n, v);
+	}
+}
+
+void heapSort(int* v, int n){
+	
+	maxHeapify(v,n);
+	int aux;
+	for(int i = n-1; i > 0; i--){
+		heapify(0, i+1, v);
+		aux = v[0];
+		v[0] = v[i];
+		v[i] = aux;
+	}
+}
+
+
 int main(int argc, char * argv[]){
 
 	int codigo = 0;
@@ -227,6 +308,16 @@ int main(int argc, char * argv[]){
 			mergeSort(vetor, 0, tamanho-1);
 			printf("\narray ordenado pelo mergeSort\n");
 		break;
+
+		case 5:
+			countingSort(vetor, tamanho);
+			printf("\narray ordenado pelo CoutingSort\n");
+		break;	
+
+		case 6:
+			heapSort(vetor,tamanho);
+			printf("\narray ordenado pelo HeapSort\n");
+		break;	
 
 		default:
 			printf("\n\ncodigo invalido !!\nDigite (./sorting 1) na chamada do programa para usar SelectionSort\nDigite (./sorting 2) na chamada do programa para usar o insertionSort\n\nO vetor digitado foi:");
